@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Draw</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			section {
+				border: 1px solid red;
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			canvas {
+				display: block;
+				border: 1px solid black;
+				margin: 10px auto 0px;
+			}
+			button {
+				outline: 0;
+				border: 0;
+			}
+			#drawingTools {
+				
+				width: 800px;
+				height: 135px;
+				margin: 0px auto;
+			}
+			#colors {
+				width: 100%;
+				height: 20px;
+				
+			}
+			#colors button {
+				width: 20%;
+				height: 10px;
+				margin-top: 5px;
+				float: left;
+			}
+
+			#colors button:hover {
+				opacity: 0.5;
+				transition: 0.1s;
+			}
+
+			#black {background: black;}
+			#white {background: white;}
+			#red {background: red;}
+			#green {background: green;}
+			#blue {background: blue;}
+
+			#otherTools {
+				width: 100%;
+				height: 115px;
+			
+			}
+			#otherTools button {
+				width: 20%; /*5 buttons on screen */
+				height: 50px;
+				margin-top: 5px;
+				background: #303030;
+				color: white;
+				cursor: pointer;
+				float: left;
+			}
+			#otherTools button:hover {
+				opacity: 0.5;
+				transition: 0.1s;
+			}
+			#clearCanvas { font: 25px Futura; }
+			#brushSize1 { font: 10px Futura; }
+			#brushSize2 { font: 20px Futura; }
+			#brushSize3 { font: 30px Futura; }
+			#brushSize4 { font: 40px Futura; }
+			#fillCanvas { font: 25px Futura; }
+			#buttBrush, #squareBrush, #roundBrush { font: 18px existence; }
+			#otherTools #openFile { font: 25px existence; }
+
+			#file {
+				visibility: hidden;
+			}
+
+		</style>
+	</head>
+	<body>
+		<section>
+			<div id="drawingTools">
+				<div id="colors">
+					<button id="black" onclick="changeColor('black')"></button>
+					<button id="white" onclick="changeColor('white')"></button>
+					<button id="red" onclick="changeColor('red')"></button>
+					<button id="green" onclick="changeColor('green')"></button>
+					<button id="blue" onclick="changeColor('blue')"></button>
+				</div>
+
+				<div id="otherTools">
+					<button id="clearCanvas" onclick="clearCanvas()">CLEAR</button>
+					<button id="brushSize1" onclick="changeBrushSize(5)">SMALL</button>
+					<button id="brushSize2" onclick="changeBrushSize(20)">MEDIUM</button>
+					<button id="brushSize3" onclick="changeBrushSize(30)">LARGE</button>
+					<button id="brushSize4" onclick="changeBrushSize(40)">XL</button><br/>
+					<button id="fillCanvas" onclick="fillCanvas()">FILL</button>
+					<button id="buttBrush" onclick="changeBrushStyle('butt')">Butt</button>
+					<button id="squareBrush" onclick="changeBrushStyle('square')">Square</button>
+					<button id="roundBrush" onclick="changeBrushStyle('round')">Round</button>
+					<button id="openFile" onclick="triggerClick()">Open Image</button>
+
+				</div>
+				
+			</div>
+			<canvas id="canvas" width="800" height="500"></canvas>
+			<input id="file" type="file" accept="image/*" />
+			<p>Choose Brush color, size and style</p>
+			<p>CLEAR to erase the canvas, FILL makes canvas chosen color, OPEN fills canvas with chosen image.</p>
+		</section>
+		<script type="text/javascript">
+
+			var canvas = document.getElementById('canvas');
+			var context = canvas.getContext('2d');
+			context.lineWidth = 5;
+			var down = false;
+
+			canvas.addEventListener('mousemove', draw);
+
+			canvas.addEventListener('mousedown', function() {
+				down = true;
+				context.beginPath();
+				context.moveTo(xPos, yPos);
+				canvas.addEventListener("mousedown", draw);
+			});
+
+			canvas.addEventListener('mouseup', function() { down = false;});
+
+			function draw(e) {
+				xPos = e.clientX - canvas.offsetLeft;
+				yPos = e.clientY - canvas.offsetTop;
+
+				if(down == true) {
+					context.lineTo(xPos, yPos);
+					context.stroke();
+				}
+
+			}
+
+			function changeColor(color) {
+				context.strokeStyle = color;
+				context.fillStyle = color;
+			}
+			function clearCanvas() {
+				context.clearRect(0, 0, canvas.width, canvas.height);
+			}
+
+			function changeBrushSize(size) {
+				context.lineWidth = size;
+			}
+			function fillCanvas() {
+				context.fillRect(0, 0, canvas.width, canvas.height);
+			}
+			function changeBrushStyle(brushStyle) {
+				context.lineCap = brushStyle;
+			}
+			function triggerClick() {
+				document.getElementById('file').click();
+			}
+
+			document.getElementById('file').addEventListener('change', function(e){
+				clearCanvas();
+				URL = URL || webkitURL; //older browser compatiability
+				var temp = URL.createObjectURL(e.target.files[0]);
+				var image = new Image();
+				image.src = temp;
+
+				image.addEventListener('load', function()
+				{
+					imageWidth = image.naturalWidth;
+					imageHeight = image.naturalHeight;
+					newImageWidth = imageWidth;
+					newImageHeight = imageHeight;
+					originalImageRatio = imageWidth / imageHeight;
+
+					if(newImageWidth > newImageHeight && newImageWidth > 800){
+						newImageWidth = 800;
+						naturalHeight = 800 / originalImageRatio;
+					}
+					if((newImageWidth >= newImageHeight || newImageHeight > newImageWidth) && newImageHeight > 500){
+						newImageHeight = 500;
+						newImageWidth = 500 * originalImageRatio;
+					}
+	
+					context.drawImage(image, 0, 0, newImageWidth, newImageHeight);
+					URL.revokeObjectURL(temp);
+				});
+			});
+
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,168 @@
+#aceDiamonds {
+	background-position: 0px 0px;
+}
+#aceHearts {
+	background-position: 0px -110px;
+}
+#aceSpades {
+	background-position: 0px -220px;
+}
+#aceClubs {
+	background-position: 0px -330px;
+}
+
+#twoDiamonds {
+	background-position: -80px 0px;
+}
+#twoHearts {
+	background-position: -80px -110px;
+}
+#twoSpades {
+	background-position: -80px -220px;
+}
+#twoClubs {
+	background-position: -80px -330px;
+}
+
+#threeDiamonds {
+	background-position: -160px 0px;
+}
+#threeHearts {
+	background-position: -160px -110px;
+}
+#threeSpades {
+	background-position: -160px -220px;
+}
+#threeClubs {
+	background-position: -160px -330px;
+}
+
+#fourDiamonds {
+	background-position: -240px 0px;
+}
+#fourHearts {
+	background-position: -240px -110px;
+}
+#fourSpades {
+	background-position: -240px -220px;
+}
+#fourClubs {
+	background-position: -240px -330px;
+}
+
+#fiveDiamonds {
+	background-position: -320px 0px;
+}
+#fiveHearts {
+	background-position: -320px -110px;
+}
+#fiveSpades {
+	background-position: -320px -220px;
+}
+#fiveClubs {
+	background-position: -320px -330px;
+}
+
+#sixDiamonds {
+	background-position: -400px 0px;
+}
+#sixHearts {
+	background-position: -400px -110px;
+}
+#sixSpades {
+	background-position: -400px -220px;
+}
+#sixClubs {
+	background-position: -400px -330px;
+}
+
+#sevenDiamonds {
+	background-position: -480px 0px;
+}
+#sevenHearts {
+	background-position: -480px -110px;
+}
+#sevenSpades {
+	background-position: -480px -220px;
+}
+#sevenClubs {
+	background-position: -480px -330px;
+}
+
+#eightDiamonds {
+	background-position: -560px 0px;
+}
+#eightHearts {
+	background-position: -560px -110px;
+}
+#eightSpades {
+	background-position: -560px -220px;
+}
+#eightClubs {
+	background-position: -560px -330px;
+}
+
+#nineDiamonds {
+	background-position: -640px 0px;
+}
+#nineHearts {
+	background-position: -640px -110px;
+}
+#nineSpades {
+	background-position: -640px -220px;
+}
+#nineClubs {
+	background-position: -640px -330px;
+}
+
+#tenDiamonds {
+	background-position: -720px 0px;
+}
+#tenHearts {
+	background-position: -720px -110px;
+}
+#tenSpades {
+	background-position: -720px -220px;
+}
+#tenClubs {
+	background-position: -720px -330px;
+}
+
+#jackDiamonds {
+	background-position: -800px 0px;
+}
+#jackHearts {
+	background-position: -800px -110px;
+}
+#jackSpades {
+	background-position: -800px -220px;
+}
+#jackClubs {
+	background-position: -800px -330px;
+}
+
+#queenDiamonds {
+	background-position: -880px 0px;
+}
+#queenHearts {
+	background-position: -880px -110px;
+}
+#queenSpades {
+	background-position: -880px -220px;
+}
+#queenClubs {
+	background-position: -880px -330px;
+}
+
+#kingDiamonds {
+	background-position: -960px 0px;
+}
+#kingHearts {
+	background-position: -960px -110px;
+}
+#kingSpades {
+	background-position: -960px -220px;
+}
+#kingClubs {
+	background-position: -960px -330px;
+}

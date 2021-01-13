@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<title>Projects</title>
+		<meta charset="utf-8" />
+		   
+		<style>
+			.container-fluid {
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			.bg-1 {
+				background-color: #47c9af;
+				color: #ffffff;
+
+			}	
+			#calc-contain {
+				position: relative;
+				width: 275px;
+				border: 3px solid black;
+				background-color: gray;
+				border-radius: 8px;
+			}
+			.button{
+				width:44px;
+				height: 30px;
+				background: lightgray;
+				border-radius: 8px;
+			}
+			.display input{
+				position: relative;
+				left: 2px;
+				top: 2px;
+				height: 354;
+				color: black;
+				background-color: #d;
+				text-align: right;
+				font-size: 21px;
+				font-weight: bold;
+			}
+			header {
+				font-family: "Desdemona";
+				font-size: 150%;
+			}
+			h1 {
+				font-size: 200%;
+			}
+			
+			
+		</style>
+		<script type="text/javascript">
+			function c(val){
+				document.getElementById("display").value = val;
+			}
+			function math(val){
+				document.getElementById("display").value += val;
+			}
+			function e(){
+				try {
+					c(eval(document.getElementById("display").value))
+				}
+				catch(e){
+					c('error') 
+				}
+			}
+		</script>
+
+
+
+	</head>
+	<body>
+		<header>
+				<div align="center" class="container-fluid bg-1 text-center">
+					<h1 align="center">CALCULATOR</h1>
+					<div id="calc-contain">
+						<div class="display"><input type="text" size="17" id="display" style="margin-left: 15px" readonly>
+							<div class="keys">
+								<p>
+									<input type="button" class="button" value="mrc" onclick='c("not defined")'>
+									<input type="button" class="button" value="(" onclick='math("(")'>
+									<input type="button" class="button" value=")" onclick='math(")")'>
+									<input type="button" class="button" value="/" onclick='math("/")'> 
+								</p>
+								<p>
+									<input type="button" class="button" value="7" onclick='math("7")'>
+									<input type="button" class="button" value="8" onclick='math("8")'>
+									<input type="button" class="button" value="9" onclick='math("9")'>
+									<input type="button" class="button" value="*" onclick='math("*")'> 
+								</p>
+								<p>
+									<input type="button" class="button" value="4" onclick='math("4")'>
+									<input type="button" class="button" value="5" onclick='math("5")'>
+									<input type="button" class="button" value="6" onclick='math("6")'>
+									<input type="button" class="button" value="-" onclick='math("-")'> 
+								</p>
+								<p>
+									<input type="button" class="button" value="1" onclick='math("1")'>
+									<input type="button" class="button" value="2" onclick='math("2")'>
+									<input type="button" class="button" value="3" onclick='math("3")'>
+									<input type="button" class="button" value="+" onclick='math("+")'> 
+								</p>
+								<p>
+									<input type="button" class="button" value="0" onclick='math("0")'>
+									<input type="button" class="button" value="." onclick='math(".")'>
+									<input type="button" class="button" value="C" onclick='c("")'>
+									<input type="button" class="button" value="=" onclick='e()'> 
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+	</body>
+<html>
+
+
+
+
+
+
+
+

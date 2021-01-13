@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minesweeper</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="600"></canvas>
+<script type="text/javascript">
+
+	var COLS = 10, ROWS = 10, MINES = 10;
+
+	var playing = true;
+	var board = [];
+	var state = [];
+
+	var BLOCK_MINE = -1;
+	var STATE_CLOSED = 0;
+	var STATE_OPENED = 1;
+	var STATE_FLAGGED = 2;
+
+	function inBounds(x,y){
+		return x >=0 && y >=0 && x < COLS && y < ROWS;
+	}
+	function countMinesArounds(x,y) {
+		var count=0;
+		for (var dx = -1; dx <= 1; dx++){
+			for (var dy = -1; dy <= 1; dy++){
+				if(dx == 0 && dy == 0 ){
+					continue;
+				}
+				var yy = y+dy;
+				var xx = x+dx;
+				if (inBounds(xx,yy)) {
+					if (board[yy][xx] == BLOCK_MINE) {
+						count++;
+					}
+				}
+			}
+		}
+		return count;
+	}
+	function init(){
+		for(var y=0;y<ROWS;y++){
+			board.push([]);
+			state.push([]);
+			for(var x=0;x<COLS;x++){
+				board[y].push(0);
+				state[y].push(STATE_CLOSED);
+			}
+		}
+		for (var mine=0;mine<MINES;mine++){
+			var x, y;
+			do {
+				x = Math.floor(Math.random()*COLS);
+				y = Math.floor(Math.random()*ROWS);
+			} while(board[y][x] == BLOCK_MINE);
+			board[y][x] = BLOCK_MINE;
+		}
+		for (var y=0; y<ROWS; y++){
+			for (var x=0; x<COLS; x++){
+				if (board[y][x] != BLOCK_MINE) {
+					board[y][x] = countMinesArounds(x,y);
+				}		
+			}
+		}
+	}
+	function openBlock(x, y){
+		if(!playing){
+			return;
+		}
+		if(board[y][x] == BLOCK_MINE){
+			alert("GAMEOVER!");
+			playing = false;
+		}
+		state[y][x] = STATE_OPENED;
+		if (board[y][x]==0) {
+			for (var dx =-1;dx<=1;dx++){
+				for (var dy =-1;dy<=1;dy++){
+					var xx = x + dx,
+						yy = y + dy;
+					if (inBounds(xx, yy)) {
+						if (state[yy][xx] != STATE_OPENED) {
+							openBlock(xx, yy);
+						}	
+					}
+				}
+			}
+		}
+	}
+	init();
+</script>
+<script type="text/javascript">
+	var W = 600, H = 600;
+	var BLOCK_W = W / COLS,
+		BLOCK_H = H / ROWS;
+	var canvas = document.getElementById('canvas'),
+		ctx = canvas.getContext('2d');
+
+	function modelToView(x, y) {
+		return {
+			x: x*BLOCK_W,
+			y: y*BLOCK_H
+		};
+	}
+	function viewToModel(x, y) {
+		return {
+			x: Math.floor(x/BLOCK_W),
+			y: Math.floor(y/BLOCK_H)
+		};
+	}
+
+	function renderBlock(x,y){
+		var viewCoordinates = modelToView(x,y);
+
+		ctx.fillStyle = '#aaa';
+		ctx.strokeStyle = 'black';
+		ctx.fillRect(viewCoordinates.x, viewCoordinates.y, BLOCK_W, BLOCK_H);
+		ctx.strokeRect(viewCoordinates.x, viewCoordinates.y, BLOCK_W, BLOCK_H);
+
+		if (state[y][x] == STATE_OPENED) {
+			ctx.fillStyle = 'black';
+			ctx.font = "20pt Verdana";
+			ctx.fillText(board[y][x], viewCoordinates.x, viewCoordinates.y + BLOCK_H);
+		}
+	}
+	function render(){
+		for(var y = 0;y<ROWS;y++){
+			for (var x = 0;x<COLS;x++){
+				renderBlock(x,y);
+			}
+		}
+	}
+	render();
+
+</script>
+<script type="text/javascript">
+	canvas.addEventListener('click', function(e) {
+		var x = e.clientX - canvas.offsetLeft;
+			y = e.clientY - canvas.offsetTop;
+
+		var modelCoordinates = viewToModel(x,y)
+		openBlock(modelCoordinates.x, modelCoordinates.y);
+		render();
+	});
+</script>
+</body>
+</html>
