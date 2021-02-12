@@ -11,14 +11,8 @@ body {
     0% { opacity: 0;  }  
     100% { opacity: 1;  } 
 } 
-@font-face {
-    font-family: QS;
-    src: url(Quicksand-VariableFont_wght.ttf);
-}
-@font-face {
-    font-family: PatuaOne;
-    src: url(PatuaOne-Regular.ttf);
-}
+@font-face { font-family: QS; src: url(Quicksand-VariableFont_wght.ttf); }
+@font-face { font-family: PatuaOne; src: url(PatuaOne-Regular.ttf); }
 a {
     color: black;
     text-decoration: none;
@@ -67,7 +61,6 @@ p {
     position: relative;
 }
 #John {
-
     color: black;
     font-size: 22px;
     position: absolute;
@@ -146,15 +139,13 @@ p {
         display:none;
     }
 }
-.content {
-    
-}
+.content {}
 .proj {
     float: left;
     position: relative;
     text-align: center;
     width: 32%;
-    height: 300px;
+    height: 350px;
     margin-left: 1%;
     margin-bottom: 1%;
     border: 1px lightgrey solid;
@@ -163,9 +154,11 @@ p {
     cursor: pointer;
 }
 .proj img {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 350px;
+
     object-fit: cover;
+
 }
 .proj a {
     display: block;
@@ -269,18 +262,56 @@ p {
     width: 100%;
     height: 100%;
 }
+.ResumeButton {
+    background-color: white;
+    text-align: center;
+    width: 170px;
+    height: 40px;
+    border: 4px solid #909090;
+    position: block;
+    top: 50%;
+    left: 46%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+     -webkit-transition: .2s ease;
+    transition: .2s ease;
+}
+.ResumeButton a {
+    width: 100%;
+    height: 100%;
+    color: #909090;
+    font-family: 'QS', serif;
+    font-weight: 600;
+}
+.ResumeButton:hover {
+    
+    background-color: black;
+}
+.ResumeButton a:hover{
+    color: white;
+}
 .codePage {
     position: relative;
     text-align: center;
-    height: auto;
-    border: 1px lightgrey solid;
-    -webkit-transition: .2s ease;
-    transition: .2s ease;
+    height: 500px;
+}
+.codeText {
+
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.codeText h3 {
+    
 }
 .codePage a {
     display: block;
 }
-
+.codePage img{
+    margin: 0 0 0 0;
+    height: 100%;
+    object-fit: contain;
+}
 @media screen and (max-width: 800px) {
   .projContentColumn50 {
     flex: 100%;
