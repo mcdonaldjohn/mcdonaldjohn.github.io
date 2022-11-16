@@ -193,7 +193,7 @@ p {
     transition: .2s ease;
     cursor: pointer;
 }
-.home {
+.homeText {
     position: absolute;
     color: white;
     height:100%;
@@ -224,11 +224,17 @@ p {
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: 1px black solid;
 }
+@media screen and (max-width: 1250px) {
+    .homeBox {width: 48%; }
+}
+@media screen and (max-width: 850px) {
+     .homeBox { width: 98%; }
+}
 @media screen and (max-width: 950px) {
-   .proj {width: 48%; }
+    .proj {width: 48%; }
 }
 @media screen and (max-width: 540px) {
-   .proj { width: 98%; }
+    .proj { width: 98%; }
 }
 .clearfix:after {
     content: "";
